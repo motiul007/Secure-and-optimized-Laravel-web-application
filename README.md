@@ -172,3 +172,96 @@ Core admin workflows
 
 Run Tests
 php artisan test
+
+Setup Instructions
+1️⃣ Clone the Repository
+git clone https://github.com/<your-username>/Secure-and-optimized-Laravel-web-application.git
+cd ecommerce-backend
+
+2️⃣ Install Dependencies
+composer install
+npm install
+
+3️⃣ Environment Configuration
+cp .env.example .env
+php artisan key:generate
+
+
+Update .env with database credentials and queue settings:
+
+QUEUE_CONNECTION=database
+
+4️⃣ Database Setup
+php artisan migrate
+php artisan queue:table
+php artisan migrate
+
+5️⃣ Storage Link
+php artisan storage:link
+
+6️⃣ Start Queue Worker
+php artisan queue:work --timeout=0
+
+
+⚠️ Required for bulk imports to work.
+
+7️⃣ Run Application
+php artisan serve
+
+📊 Architectural & Performance Decisions
+Why Queues?
+
+Avoids HTTP timeouts
+
+Enables background processing
+
+Improves scalability
+
+Why Chunk Processing?
+
+Prevents memory exhaustion
+
+Handles large files efficiently
+
+Why Multiple Guards?
+
+Strong role isolation
+
+Improved security
+
+Cleaner authorization logic
+
+Why Presence Channels?
+
+Accurate real-time user presence
+
+Ideal for admin monitoring dashboards
+
+📁 Project Structure Highlights
+app/
+ ├── Imports/
+ ├── Jobs/
+ ├── Models/
+ ├── Http/
+ │    ├── Controllers/
+ │    ├── Middleware/
+routes/
+ ├── admin.php
+ ├── customer.php
+resources/
+ ├── views/
+tests/
+
+🎥 Screencast (Optional)
+
+A short 3–5 minute video walkthrough can be provided covering:
+
+Authentication flow
+
+Product import
+
+Queue processing
+
+Real-time presence
+
+Code structure

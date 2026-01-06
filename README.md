@@ -1,66 +1,174 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Secure and Optimized Laravel Web Application
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 📌 Objective
 
-## About Laravel
+This project is a **secure, backend-focused Laravel web application** built to demonstrate expertise in:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Multi-authentication systems
+- Role-based route protection
+- Real-time updates using WebSockets
+- High-performance bulk product import using queues and batch processing
+- Test-driven development with Laravel’s testing tools
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+The UI is intentionally minimal. The primary focus is **backend logic, scalability, performance, and correctness**.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🚀 Features Overview
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 1️⃣ Multiple Authentication Guards
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- Separate authentication flows for:
+  - **Admin**
+  - **Customer**
+- Independent login, registration, and dashboards
+- Implemented using Laravel’s built-in guard system
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#### Guards Used
+- `auth:admin`
+- `auth:customer`
 
-## Laravel Sponsors
+#### Route Protection
+Routes are protected using middleware per guard:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```php
+Route::middleware('auth:admin')->group(function () {
+    // Admin routes
+});
 
-### Premium Partners
+Route::middleware('auth:customer')->group(function () {
+    // Customer routes
+});
+2️⃣ Product Management (Admin)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Admins can manage products with full CRUD functionality.
 
-## Contributing
+Product Fields
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+name
 
-## Code of Conduct
+description
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+price
 
-## Security Vulnerabilities
+image
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+category
 
-## License
+stock
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Admin Capabilities
+
+Create products
+
+Update products
+
+Delete products
+
+View paginated product listings
+
+3️⃣ Bulk Product Import (100,000+ Records)
+
+A high-performance bulk import system is implemented for Admin users.
+
+Key Features
+
+Supports CSV and Excel files
+
+Handles 100,000+ products
+
+Uses:
+
+Chunked reading
+
+Laravel queues
+
+Background job processing
+
+Prevents request timeouts entirely
+
+Default Image Logic
+
+If an image is missing in the CSV:
+
+defaults/images.jpg
+
+
+is automatically assigned to the product.
+
+4️⃣ Optimized Import Architecture
+Tools & Concepts Used
+
+maatwebsite/excel
+
+Laravel Queues (database driver)
+
+Chunk processing (chunkSize = 1000)
+
+Background workers (queue:work)
+
+Why This Works
+
+Low memory usage
+
+Safe for very large datasets
+
+Import runs outside the HTTP request lifecycle
+
+Fully scalable and fault-tolerant
+
+5️⃣ Real-Time Updates (WebSockets)
+WebSocket Stack
+
+Laravel Broadcasting
+
+Presence Channels
+
+WebSocket provider (Laravel WebSockets / Pusher)
+
+Implemented Features
+
+Real-time online/offline presence tracking
+
+Tracks both:
+
+Admin users
+
+Customer users
+
+Presence status:
+
+Updated live on Admin dashboard
+
+Stored in the database
+
+📂 Sample Import File
+
+The repository includes:
+
+products_sample_import.csv
+
+
+Contains demo product data
+
+Used to test and verify bulk import functionality
+
+Demonstrates large-scale import performance
+
+🧪 Testing
+Test Types Included
+
+✅ Unit Test
+
+✅ Feature Test
+
+Covered Scenarios
+
+Product creation
+
+Bulk import validation logic
+
+Core admin workflows
+
+Run Tests
+php artisan test

@@ -1,0 +1,11 @@
+name,description,price,category,stock,image
+Product 1,Description for Product 1,19.99,Electronics,100,
+Product 2,Description for Product 2,29.99,Clothing,50,
+Product 3,Description for Product 3,39.99,Home,20,
+Product 4,Description for Product 4,49.99,Garden,10,
+Product 5,Description for Product 5,59.99,Books,5,
+Product 6,Description for Product 6,69.99,Toys,30,
+Product 7,Description for Product 7,79.99,Sports,40,
+Product 8,Description for Product 8,89.99,Automotive,15,
+Product 9,Description for Product 9,99.99,Industrial,25,
+Product 10,Description for Product 10,109.99,Health,60,

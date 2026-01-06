@@ -237,22 +237,8 @@ Accurate real-time user presence
 
 Ideal for admin monitoring dashboards
 
-📁 Project Structure Highlights
-app/
- ├── Imports/
- ├── Jobs/
- ├── Models/
- ├── Http/
- │    ├── Controllers/
- │    ├── Middleware/
-routes/
- ├── admin.php
- ├── customer.php
-resources/
- ├── views/
-tests/
 
-🎥 Screencast (Optional)
+ Screencast (Optional)
 
 A short 3–5 minute video walkthrough can be provided covering:
 

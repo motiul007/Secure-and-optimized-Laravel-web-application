@@ -173,11 +173,6 @@ Core admin workflows
 Run Tests
 php artisan test
 
-Setup Instructions
-1️⃣ Clone the Repository
-git clone https://github.com/<your-username>/Secure-and-optimized-Laravel-web-application.git
-cd ecommerce-backend
-
 2️⃣ Install Dependencies
 composer install
 npm install
